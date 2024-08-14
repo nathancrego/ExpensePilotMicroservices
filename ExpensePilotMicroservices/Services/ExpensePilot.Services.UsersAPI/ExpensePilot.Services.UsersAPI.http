@@ -1,0 +1,6 @@
+@ExpensePilot.Services.UsersAPI_HostAddress = http://localhost:5167
+
+GET {{ExpensePilot.Services.UsersAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
