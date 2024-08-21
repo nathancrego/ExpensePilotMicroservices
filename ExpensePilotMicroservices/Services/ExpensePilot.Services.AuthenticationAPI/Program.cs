@@ -1,5 +1,7 @@
 using ExpensePilot.Services.AuthenticationAPI.Data;
 using ExpensePilot.Services.AuthenticationAPI.Models.Domain;
+using ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation;
+using ExpensePilot.Services.AuthenticationAPI.Repositories.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +12,17 @@ builder.Services.AddDbContext<AuthDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("AuthConnectionString"));
 });
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>()
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
+builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<AuthDbContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

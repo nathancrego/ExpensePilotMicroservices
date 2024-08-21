@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExpensePilot.Services.AuthenticationAPI.Data
 {
-    public class AuthDbContext : IdentityDbContext<User>
-    {
+    //Always remember the reference to model classes should be in the same order as given in the intellisense.
+    public class AuthDbContext :IdentityDbContext<User,Role,Guid,UserClaim,UserRole,UserLogin,RoleClaim,UserToken>
+    { 
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options) { }
 
         public DbSet<User> Users {  get; set; }
