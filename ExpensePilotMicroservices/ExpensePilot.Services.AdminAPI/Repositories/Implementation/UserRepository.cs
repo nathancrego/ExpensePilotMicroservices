@@ -7,10 +7,10 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
 {
     public class UserRepository : IUserRepository
     {
-        private readonly AuthDbContext dbContext;
+        private readonly AdminDbContext dbContext;
         private readonly UserManager<User> userManager;
 
-        public UserRepository(AuthDbContext dbContext, UserManager<User> userManager)
+        public UserRepository(AdminDbContext dbContext, UserManager<User> userManager)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;

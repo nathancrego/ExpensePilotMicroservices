@@ -1,28 +1,27 @@
+using ExpensePilot.Services.AdminAPI.Repositories.Implementation;
+using ExpensePilot.Services.AdminAPI.Repositories.Interface;
 using ExpensePilot.Services.AuthenticationAPI.Data;
 using ExpensePilot.Services.AuthenticationAPI.Models.Domain;
 using ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation;
-using ExpensePilot.Services.AuthenticationAPI.Repositories.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<AuthDbContext>(option =>
+builder.Services.AddDbContext<AdminDbContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("AuthConnectionString"));
+    option.UseSqlServer(builder.Configuration.GetConnectionString("AdminConnectionString"));
 });
-builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
-builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<AuthDbContext>()
+builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<AdminDbContext>()
     .AddDefaultTokenProviders();
 
-//configure authentication check sipnspice app for this.
+//add role based authorizations
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
-builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
-builder.Services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -38,7 +37,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
