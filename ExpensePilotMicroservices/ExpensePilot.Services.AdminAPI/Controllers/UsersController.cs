@@ -103,10 +103,6 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 Id = id,
                 Fname = editUser.Fname,
                 Lname = editUser.Lname,
-                Email = editUser.Email,
-                NormalizedEmail = editUser.Email.ToUpper(),
-                UserName = editUser.Email.Split('@')[0],
-                NormalizedUserName = editUser.Email.Split('@')[0].ToUpper(),
                 PhoneNumber = editUser.PhoneNumber,
                 ManagerId = editUser.ManagerId
             };
@@ -118,10 +114,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
             var response = new UserDto
             {
                 Id = edit.Id,
-                UserName = edit.UserName,
                 Fname = edit.Fname,
                 Lname = edit.Lname,
-                Email = edit.Email,
                 PhoneNumber = edit.PhoneNumber,
                 ManagerId = edit.ManagerId,
                 ManagerName = edit.Manager != null ? $"{edit.Manager.Fname}{edit.Manager.Lname}" : null

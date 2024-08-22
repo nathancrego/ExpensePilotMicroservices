@@ -10,7 +10,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Models.Domain
         public int? DepartmentId { get; set; }
 
         //Navigation Properties
-        public User Manager { get; set; }
+        public User? Manager { get; set; }
         public ICollection<User> Subordinates { get; set; } = new List<User>();
     }
 }

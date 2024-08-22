@@ -53,7 +53,10 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
             {
                 return null;
             }
-            dbContext.Entry(existingUser).CurrentValues.SetValues(user);
+            existingUser.Fname = user.Fname;
+            existingUser.Lname = user.Lname;
+            existingUser.PhoneNumber = user.PhoneNumber;
+            existingUser.ManagerId = user.ManagerId;
             await dbContext.SaveChangesAsync();
             //Reload navigation properties
             await dbContext.Entry(existingUser).Reference(u => u.Manager).LoadAsync();

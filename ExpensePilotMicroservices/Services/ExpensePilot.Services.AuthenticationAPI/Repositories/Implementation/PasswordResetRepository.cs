@@ -19,6 +19,11 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
 
         public async Task<string> GeneratePasswordResetTokenAsync(User user)
         {
+            if(string.IsNullOrEmpty(user.SecurityStamp))
+            {
+                user.SecurityStamp = Guid.NewGuid().ToString();
+                await userManager.UpdateAsync(user);
+            }
             return await userManager.GeneratePasswordResetTokenAsync(user);
         }
 
