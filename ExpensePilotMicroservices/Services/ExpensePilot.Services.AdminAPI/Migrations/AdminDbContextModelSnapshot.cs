@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ExpensePilot.Services.AuthenticationAPI.Migrations
+namespace ExpensePilot.Services.AdminAPI.Migrations
 {
-    [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AdminDbContext))]
+    partial class AdminDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

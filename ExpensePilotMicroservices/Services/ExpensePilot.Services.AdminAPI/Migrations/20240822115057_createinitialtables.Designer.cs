@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ExpensePilot.Services.AuthenticationAPI.Migrations
+namespace ExpensePilot.Services.AdminAPI.Migrations
 {
-    [DbContext(typeof(AuthDbContext))]
-    [Migration("20240821060122_InitialCreateAndIDColsareGuid")]
-    partial class InitialCreateAndIDColsareGuid
+    [DbContext(typeof(AdminDbContext))]
+    [Migration("20240822115057_createinitialtables")]
+    partial class createinitialtables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

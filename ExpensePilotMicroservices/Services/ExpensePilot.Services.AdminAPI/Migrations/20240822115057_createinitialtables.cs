@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ExpensePilot.Services.AuthenticationAPI.Migrations
+namespace ExpensePilot.Services.AdminAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateAndIDColsareGuid : Migration
+    public partial class createinitialtables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

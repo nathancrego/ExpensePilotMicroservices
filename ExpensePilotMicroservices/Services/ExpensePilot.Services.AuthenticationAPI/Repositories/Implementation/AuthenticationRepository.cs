@@ -11,14 +11,12 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Interface
     {
         private readonly AuthDbContext dbContext;
         private readonly UserManager<User> userManager;
-        private readonly RoleManager<Role> roleManager;
         private readonly IJwtTokenGenerator jwtTokenGenerator;
 
-        public AuthenticationRepository(AuthDbContext dbContext, UserManager<User> userManager, RoleManager<Role> roleManager, IJwtTokenGenerator jwtTokenGenerator)
+        public AuthenticationRepository(AuthDbContext dbContext, UserManager<User> userManager, IJwtTokenGenerator jwtTokenGenerator)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
-            this.roleManager = roleManager;
             this.jwtTokenGenerator = jwtTokenGenerator;
         }
         public async Task<string> Register(RegistrationRequestDto registrationRequestDto)

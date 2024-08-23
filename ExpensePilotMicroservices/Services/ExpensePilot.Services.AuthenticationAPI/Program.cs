@@ -13,10 +13,10 @@ builder.Services.AddDbContext<AuthDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("AuthConnectionString"));
 });
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
-builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<AuthDbContext>()
+builder.Services.AddIdentity<User, IdentityRole<Guid>>().AddEntityFrameworkStores<AuthDbContext>()
     .AddDefaultTokenProviders();
 
-//configure authentication check sipnspice app for this.
+//configure authentication 
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings

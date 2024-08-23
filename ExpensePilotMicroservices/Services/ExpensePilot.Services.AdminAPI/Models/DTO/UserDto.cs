@@ -1,4 +1,6 @@
-﻿namespace ExpensePilot.Services.AuthenticationAPI.Models.DTO
+﻿using ExpensePilot.Services.AdminAPI.Models.DTO;
+
+namespace ExpensePilot.Services.AuthenticationAPI.Models.DTO
 {
     public class UserDto
     {
@@ -10,6 +12,7 @@
         public string PhoneNumber { get; set; }
         public Guid? ManagerId { get; set; }
         public string ManagerName {  get; set; }
+        public RoleDto Role { get; set; }
         //public int? DepartmentId { get; set; }
 
     }

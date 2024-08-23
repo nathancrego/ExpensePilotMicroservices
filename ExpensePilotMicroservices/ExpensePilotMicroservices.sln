@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpensePilot.Services.Payme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpensePilot.Services.AuthenticationAPI", "Services\ExpensePilot.Services.AuthenticationAPI\ExpensePilot.Services.AuthenticationAPI.csproj", "{B2FE032E-8223-43DC-B38B-48F722F957E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensePilot.Services.AdminAPI", "ExpensePilot.Services.AdminAPI\ExpensePilot.Services.AdminAPI.csproj", "{DC4B319A-7F40-4086-AB07-37A7C5319E83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensePilot.Services.AdminAPI", "Services\ExpensePilot.Services.AdminAPI\ExpensePilot.Services.AdminAPI.csproj", "{0F1A1736-3AA1-49F0-A6E6-8359AB83E408}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,10 @@ Global
 		{B2FE032E-8223-43DC-B38B-48F722F957E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2FE032E-8223-43DC-B38B-48F722F957E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2FE032E-8223-43DC-B38B-48F722F957E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC4B319A-7F40-4086-AB07-37A7C5319E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC4B319A-7F40-4086-AB07-37A7C5319E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC4B319A-7F40-4086-AB07-37A7C5319E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC4B319A-7F40-4086-AB07-37A7C5319E83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F1A1736-3AA1-49F0-A6E6-8359AB83E408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F1A1736-3AA1-49F0-A6E6-8359AB83E408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F1A1736-3AA1-49F0-A6E6-8359AB83E408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F1A1736-3AA1-49F0-A6E6-8359AB83E408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,7 +52,7 @@ Global
 		{7443AE3C-9192-4D1F-961F-115993C0DCCB} = {BACA5B6A-0A1B-406D-AE91-4474FE48B24E}
 		{6A4FF728-AA10-4EC7-B364-46D43BA3BE5D} = {BACA5B6A-0A1B-406D-AE91-4474FE48B24E}
 		{B2FE032E-8223-43DC-B38B-48F722F957E9} = {BACA5B6A-0A1B-406D-AE91-4474FE48B24E}
-		{DC4B319A-7F40-4086-AB07-37A7C5319E83} = {BACA5B6A-0A1B-406D-AE91-4474FE48B24E}
+		{0F1A1736-3AA1-49F0-A6E6-8359AB83E408} = {BACA5B6A-0A1B-406D-AE91-4474FE48B24E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9724EE33-00E9-4201-B7A3-BD5906B5DBBA}

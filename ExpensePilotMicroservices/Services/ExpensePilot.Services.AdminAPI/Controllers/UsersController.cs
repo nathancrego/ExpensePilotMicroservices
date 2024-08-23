@@ -29,10 +29,13 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 NormalizedEmail = addUser.Email.ToUpper(),
                 UserName = addUser.Email.Split('@')[0],
                 NormalizedUserName = addUser.Email.Split('@')[0].ToUpper(),
+                SecurityStamp = Guid.NewGuid().ToString(),
+                LockoutEnabled = true,
                 PhoneNumber = addUser.PhoneNumber,
                 ManagerId = addUser.ManagerId
             };
-            await userRepository.CreateAsync(add);
+            string roleName = addUser.Role.RoleName;
+            await userRepository.CreateAsync(add, roleName);
 
             //Convert Domain model to DTO
             var response = new UserDto
@@ -106,8 +109,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 PhoneNumber = editUser.PhoneNumber,
                 ManagerId = editUser.ManagerId
             };
-            edit = await userRepository.UpdateAsync(edit);
-            if(edit is null)
+            var updatedUser = await userRepository.UpdateAsync(edit, editUser.Role.RoleName);
+            if(updatedUser is null)
             {
                 return NotFound();
             }

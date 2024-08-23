@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ExpensePilot.Services.AdminAPI.Models.DTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExpensePilot.Services.AuthenticationAPI.Models.DTO
 {
@@ -10,5 +11,6 @@ namespace ExpensePilot.Services.AuthenticationAPI.Models.DTO
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public Guid? ManagerId { get; set; }
+        public RoleDto Role { get; set; }
     }
 }

@@ -16,6 +16,18 @@ builder.Services.AddDbContext<AdminDbContext>(option =>
 builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<AdminDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+
+    // Lockout settings
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
+
+    // User settings
+    options.User.RequireUniqueEmail = true;
+});
+
 //add role based authorizations
 
 builder.Services.AddControllers();
