@@ -17,7 +17,7 @@ namespace ExpensePilot.API.Controllers.Policies
             this.policyRepository = policyRepository;
         }
 
-        [HttpPost]
+        [HttpPost ("add")]
         public async Task<IActionResult> CreatePolicy(AddPolicyDto addPolicy)
         {
             var addp = new Policy

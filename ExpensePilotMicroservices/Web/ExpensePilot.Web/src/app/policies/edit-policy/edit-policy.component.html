@@ -1,0 +1,88 @@
+<div class="container mt-2">
+  <h1 class="text-center mt-2">Create New Policies</h1>
+  <ng-container *ngIf="policy; else notFound">
+    <form #editpolicyForm="ngForm">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step() === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Policy Name </mat-panel-title>
+            <mat-panel-description>
+              Type the Policy Name
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <mat-label for="policyName">Policy Name</mat-label>
+            <input type="text" id="policyName" name="policyName" [(ngModel)]="policy.policyName" matInput
+                   required />
+            <div class="validation"
+                 *ngIf="editpolicyForm.submitted && !editpolicyForm.controls['policyName']?.valid">
+              Policy Name is required.
+            </div>
+          </mat-form-field>
+
+          <mat-action-row>
+            <button mat-button (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step() === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Policy Purpose </mat-panel-title>
+            <mat-panel-description>
+              Type the Policy Purpose
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <mat-label for="policyPurpose">Policy Purpose</mat-label>
+            <input type="text" id="policyPurpose" name="policyPurpose" [(ngModel)]="policy.policyPurpose"
+                   matInput required />
+            <div class="validation"
+                 *ngIf="editpolicyForm.submitted && !editpolicyForm.controls['policyPurpose']?.valid">
+              Policy Purpose is required.
+            </div>
+          </mat-form-field>
+
+          <mat-action-row>
+            <button mat-button (click)="prevStep()">Previous</button>
+            <button mat-button (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step() === 2" (opened)="setStep(2)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Policy Description </mat-panel-title>
+            <mat-panel-description>
+              Type the Policy Details
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field class="example-full-width">
+            <mat-label for="policyDescription">Description</mat-label>
+            <textarea id="policyDescription" name="policyDescription" matInput
+                      [(ngModel)]="policy.policyDescription" placeholder="Ex. This policy"></textarea>
+            <div class="validation"
+                 *ngIf="editpolicyForm.submitted && !editpolicyForm.controls['policyDescription']?.valid">
+              Policy Description is required.
+            </div>
+          </mat-form-field>
+
+          <mat-action-row>
+            <button mat-button (click)="onCancel()">Cancel</button>
+            <button mat-button (click)="prevStep()">Previous</button>
+            <button mat-button (click)="onUpdate(editpolicyForm)">Update</button>
+
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </ng-container>
+
+  <!--template using temp variable for notFound-->
+  <ng-template #notFound>
+    <div class="alert alert-warning" role="alert">
+      Policy not found!
+    </div>
+  </ng-template>
+</div>

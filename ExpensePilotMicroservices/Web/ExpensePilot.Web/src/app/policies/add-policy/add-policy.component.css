@@ -1,0 +1,9 @@
+.mat-mdc-form-field {
+  display: flex !important;
+}
+
+.validation {
+  color: red;
+  font-style: italic;
+  font-weight: 100;
+}

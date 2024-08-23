@@ -1,0 +1,28 @@
+<div class="container mt-2">
+  <h1 class="text-center mt-2">Policies</h1>
+  <mat-accordion *ngIf="policies$ | async as policies">
+    <mat-expansion-panel *ngFor="let policy of policies" (opened)="panelOpenState.set(true)"
+                         (closed)="panelOpenState.set(false)" class="mt-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{policy.policyName}} </mat-panel-title>
+        <mat-panel-description>{{policy.policyPurpose}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <ul>
+        <!--<li>{{policy.policyDescription}}</li>-->
+        <li *ngFor="let sentence of policy.policyDescription.split('. '); let i = index">
+          {{ sentence.trim() }}<span *ngIf="i !== policy.policyDescription.split('. ').length - 1">.</span>
+        </li>
+      </ul>
+      <mat-action-row>
+        <button mat-button (click)="policyID = policy.policyID; onDelete()">
+          <i class="bi bi-trash-fill"></i> Delete
+          Policy
+        </button>
+        <button mat-button [routerLink]="['/policy',policy.policyID]">
+          <i class="bi bi-pencil-fill"></i> Edit
+          Policy
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
