@@ -21,6 +21,9 @@ import { EditCategoryComponent } from './admin/expensecategory/edit-category/edi
 import { ExpensestatusListComponent } from './admin/expensestatus/expensestatus-list/expensestatus-list.component';
 import { AddExpensestatusComponent } from './admin/expensestatus/add-expensestatus/add-expensestatus.component';
 import { EditExpensestatusComponent } from './admin/expensestatus/edit-expensestatus/edit-expensestatus.component';
+import { AddDepartmentComponent } from './admin/departmentmanagement/add-department/add-department.component';
+import { DepartmentListComponent } from './admin/departmentmanagement/department-list/department-list.component';
+import { EditDepartmentComponent } from './admin/departmentmanagement/edit-department/edit-department.component';
 
 const routes: Routes = [
   //{
@@ -115,6 +118,18 @@ const routes: Routes = [
   {
     path: 'admin/expensestatus/:id',
     component: EditExpensestatusComponent
+  },
+  {
+    path: 'admin/department/add',
+    component: AddDepartmentComponent
+  },
+  {
+    path: 'admin/department',
+    component: DepartmentListComponent
+  },
+  {
+    path: 'admin/department/:id',
+    component: EditDepartmentComponent
   }
 ];
 

@@ -21,6 +21,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
             await dbContext.SaveChangesAsync();
             await userManager.AddToRoleAsync(user, roleName);
             await dbContext.Entry(user).Reference(u => u.Manager).LoadAsync();
+            await dbContext.Entry(user).Reference(u => u.Department).LoadAsync();
             return user;
 
         }
@@ -28,7 +29,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
 
         public async Task<User?> DeleteAsync(Guid id)
         {
-            var existingUser = await dbContext.Users.Include(u => u.Manager).FirstOrDefaultAsync(u => u.Id == id);
+            var existingUser = await dbContext.Users.Include(u => u.Manager).Include(u => u.Department).FirstOrDefaultAsync(u => u.Id == id);
             if(existingUser is null)
             {
                 return null;
@@ -46,12 +47,12 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
 
         public async Task<IEnumerable<User>> GetAllAsync()
         {
-            return await dbContext.Users.Include(u=>u.Manager).ToListAsync();
+            return await dbContext.Users.Include(u=>u.Manager).Include(u => u.Department).ToListAsync();
         }
 
         public async Task<User?> GetByIdAsync(Guid id)
         {
-            return await dbContext.Users.Include(u => u.Manager).FirstOrDefaultAsync(u => u.Id == id);
+            return await dbContext.Users.Include(u => u.Manager).Include(u => u.Department).FirstOrDefaultAsync(u => u.Id == id);
 
             //var userWithRoles = await dbContext.Users.Include(u=>u.Manager).Where(u=>u.Id == id)
             //    .Select(u=>new
@@ -78,7 +79,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
 
         public async Task<User?> UpdateAsync(User user, string newroleName)
         {
-            var existingUser = await dbContext.Users.Include(u=>u.Manager).FirstOrDefaultAsync(u=>u.Id==user.Id);
+            var existingUser = await dbContext.Users.Include(u=>u.Manager).Include(u => u.Department).FirstOrDefaultAsync(u=>u.Id==user.Id);
             if(existingUser is null)
             {
                 return null;
@@ -87,6 +88,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
             existingUser.Lname = user.Lname;
             existingUser.PhoneNumber = user.PhoneNumber;
             existingUser.ManagerId = user.ManagerId;
+            existingUser.DepartmentId = user.DepartmentId;
 
             var currentRoles = await userManager.GetRolesAsync(existingUser);
             if(currentRoles.Count > 0)
@@ -99,6 +101,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
             await dbContext.SaveChangesAsync();
             //Reload navigation properties
             await dbContext.Entry(existingUser).Reference(u => u.Manager).LoadAsync();
+            await dbContext.Entry(existingUser).Reference(u => u.Department).LoadAsync();
             return user;
         }
     }

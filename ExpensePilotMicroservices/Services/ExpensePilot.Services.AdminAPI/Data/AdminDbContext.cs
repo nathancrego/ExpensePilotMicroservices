@@ -14,6 +14,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Data
         public DbSet<User> Users {  get; set; }
         public DbSet<ExpenseCategory> ExpenseCategory { get; set; }
         public DbSet<ExpenseStatus> ExpenseStatus { get; set; }
+        public DbSet<Department> Department { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,12 @@ namespace ExpensePilot.Services.AuthenticationAPI.Data
                 .WithMany(u => u.Subordinates)
                 .HasForeignKey(u => u.ManagerId)
                 .OnDelete(DeleteBehavior.Restrict); //Prevent cascade delete
+
+            //User - Department relationship
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Department)
+                .WithMany(d => d.Users)
+                .HasForeignKey(u => u.DepartmentId);
         }
     }
 }

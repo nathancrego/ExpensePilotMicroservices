@@ -41,6 +41,9 @@ import { CategoryListComponent } from './admin/expensecategory/category-list/cat
 import { AddExpensestatusComponent } from './admin/expensestatus/add-expensestatus/add-expensestatus.component';
 import { EditExpensestatusComponent } from './admin/expensestatus/edit-expensestatus/edit-expensestatus.component';
 import { ExpensestatusListComponent } from './admin/expensestatus/expensestatus-list/expensestatus-list.component';
+import { AddDepartmentComponent } from './admin/departmentmanagement/add-department/add-department.component';
+import { EditDepartmentComponent } from './admin/departmentmanagement/edit-department/edit-department.component';
+import { DepartmentListComponent } from './admin/departmentmanagement/department-list/department-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +68,10 @@ import { ExpensestatusListComponent } from './admin/expensestatus/expensestatus-
     CategoryListComponent,
     AddExpensestatusComponent,
     EditExpensestatusComponent,
-    ExpensestatusListComponent
+    ExpensestatusListComponent,
+    AddDepartmentComponent,
+    EditDepartmentComponent,
+    DepartmentListComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ import { AddUserComponent } from '../add-user/add-user.component';
 export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   dataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
-  displayedColumns: string[] = ["id","userName", "fname", "lname", "managerName", "email", "roleName", "action"];
+  displayedColumns: string[] = ["id","userName", "fname", "lname", "managerName", "email","departmentName", "roleName", "action"];
 
   id: string | null = null;
   deleteUserSubscription?: Subscription;

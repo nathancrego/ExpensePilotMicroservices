@@ -35,7 +35,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 SecurityStamp = Guid.NewGuid().ToString(),
                 LockoutEnabled = true,
                 PhoneNumber = addUser.PhoneNumber,
-                ManagerId = addUser.ManagerId
+                ManagerId = addUser.ManagerId,
+                DepartmentId = addUser.DepartmentId,
             };
             //string roleName = addUser.Role.RoleName;
             //await userRepository.CreateAsync(add, roleName);
@@ -59,6 +60,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 PhoneNumber = add.PhoneNumber,
                 ManagerId = add.ManagerId,
                 ManagerName = add.Manager != null ? $"{add.Manager.Fname}{add.Manager.Lname}" : null,
+                DepartmentId = add.DepartmentId,
+                DepartmentName = add.Department != null ? $"{add.Department.DepartmentName}":null,
                 RoleName = assignedRoleName.FirstOrDefault()
             };
             return Ok(response);
@@ -82,6 +85,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                     PhoneNumber = user.PhoneNumber,
                     ManagerId = user.ManagerId,
                     ManagerName = user.Manager != null ? $"{user.Manager.Fname}{user.Manager.Lname}" : null,
+                    DepartmentId = user.DepartmentId,
+                    DepartmentName = user.Department != null ? $"{user.Department.DepartmentName}" : null,
                     RoleName = role.FirstOrDefault()
 
                 });
@@ -109,6 +114,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 PhoneNumber = existingUser.PhoneNumber,
                 ManagerId = existingUser.ManagerId,
                 ManagerName = existingUser.Manager != null ? $"{existingUser.Manager.Fname}{existingUser.Manager.Lname}" : null,
+                DepartmentId = existingUser.DepartmentId,
+                DepartmentName = existingUser.Department != null ? $"{existingUser.Department.DepartmentName}" : null,
                 RoleName = role.FirstOrDefault()
             };
             return Ok(response);
@@ -124,7 +131,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 Fname = editUser.Fname,
                 Lname = editUser.Lname,
                 PhoneNumber = editUser.PhoneNumber,
-                ManagerId = editUser.ManagerId
+                ManagerId = editUser.ManagerId,
+                DepartmentId = editUser.DepartmentId,
             };
             var updatedUser = await userRepository.UpdateAsync(edit, editUser.Role.RoleName);
             if(updatedUser is null)
@@ -142,6 +150,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 PhoneNumber = edit.PhoneNumber,
                 ManagerId = edit.ManagerId,
                 ManagerName = edit.Manager != null ? $"{edit.Manager.Fname}{edit.Manager.Lname}" : null,
+                DepartmentId = edit.DepartmentId,
+                DepartmentName = edit.Department != null ? $"{edit.Department.DepartmentName}" : null,
                 RoleName = role.FirstOrDefault()
             };
             return Ok(response);
@@ -165,7 +175,10 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 Email = existingUser.Email,
                 PhoneNumber = existingUser.PhoneNumber,
                 ManagerId = existingUser.ManagerId,
-                ManagerName = existingUser.Manager != null ? $"{existingUser.Manager.Fname}{existingUser.Manager.Lname}" : null
+                ManagerName = existingUser.Manager != null ? $"{existingUser.Manager.Fname}{existingUser.Manager.Lname}" : null,
+                DepartmentId = existingUser.DepartmentId,
+                DepartmentName = existingUser.Department != null ? $"{existingUser.Department.DepartmentName}" : null,
+
             };
             return Ok(response);
         }

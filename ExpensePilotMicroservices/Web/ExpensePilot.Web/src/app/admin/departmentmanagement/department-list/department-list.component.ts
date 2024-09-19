@@ -1,41 +1,38 @@
-import { AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Department } from '../models/department.model';
 import { MatTableDataSource } from '@angular/material/table';
-import { ExpenseStatus } from '../models/expensestatus.model';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ExpensestatusService } from '../services/expensestatus.service';
+import { DepartmentService } from '../services/department.service';
 
 @Component({
-  selector: 'app-expensestatus-list',
-  templateUrl: './expensestatus-list.component.html',
-  styleUrl: './expensestatus-list.component.css'
+  selector: 'app-department-list',
+  templateUrl: './department-list.component.html',
+  styleUrl: './department-list.component.css'
 })
-export class ExpensestatusListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DepartmentListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //Point to remember - direct assignment of observable to Mattable doesn't work as it expects an array. Therefore we dont define observables in the declaration part.
-  dataSource: MatTableDataSource<ExpenseStatus> = new MatTableDataSource<ExpenseStatus>();
-  displayedColumns: string[] = ["id", "status", "action"];
+  dataSource: MatTableDataSource<Department> = new MatTableDataSource<Department>();
+  displayedColumns: string[] = ["id", "department", "action"];
 
   id: number | null = null;
-  deleteExpenseStatusSubscription?: Subscription;
-
-  readonly dialog = inject(MatDialog);
+  deleteDepartmentSubscription?: Subscription;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private expenseStatusService: ExpensestatusService) { }
+  constructor(private departmentService: DepartmentService) { }
 
   //load the roles
   ngOnInit(): void {
-    this.expenseStatusService.getAllStatus().subscribe({
-      next: (status) => {
-        this.dataSource.data = status; //Assign array directly to datasource
+    this.departmentService.getAllDepartments().subscribe({
+      next: (department) => {
+        this.dataSource.data = department; //Assign array directly to datasource
       },
       error: (err) => {
-        console.error('Failed to fetch Expense Status', err);
+        console.error('Failed to fetch Departments', err);
       }
     });
   }
@@ -59,8 +56,8 @@ export class ExpensestatusListComponent implements OnInit, AfterViewInit, OnDest
   //function to delete a role record
   onDelete(): void {
     if (this.id) {
-      //call expensestatus service
-      this.deleteExpenseStatusSubscription = this.expenseStatusService.deleteStatus(this.id)
+      //call roles service
+      this.deleteDepartmentSubscription = this.departmentService.deleteDepartment(this.id)
         .subscribe({
           next: (response) => {
             this.ngOnInit(); //refresh the table once the record is deleted
@@ -70,7 +67,7 @@ export class ExpensestatusListComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngOnDestroy(): void {
-    this.deleteExpenseStatusSubscription?.unsubscribe();
+    this.deleteDepartmentSubscription?.unsubscribe();
   }
 
 }

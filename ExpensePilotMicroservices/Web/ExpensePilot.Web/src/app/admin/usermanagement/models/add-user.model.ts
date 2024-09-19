@@ -3,7 +3,8 @@ export interface AddUser {
   lname: string,
   email: string,
   phoneNumber: string,
-  managerId?: string|null,
+  managerId?: string | null,
+  departmentId?:number|null,
   role: {
     id: string,
     roleName: string

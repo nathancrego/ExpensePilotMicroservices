@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ExpensePilot.Services.AdminAPI.Models.Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExpensePilot.Services.AuthenticationAPI.Models.Domain
 {
@@ -10,6 +11,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Models.Domain
         public int? DepartmentId { get; set; }
 
         //Navigation Properties
+        public Department Department { get; set; }
         public User Manager { get; set; }
         public ICollection<User> Subordinates { get; set; } = new List<User>();
     }

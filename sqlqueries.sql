@@ -12,3 +12,5 @@ select * from expensepilotmicroservices_authenticationdb.[dbo].[AspNetRoleClaims
 
 select * from expensepilotmicroservices_authenticationdb.[dbo].[ExpenseCategory]
 select * from expensepilotmicroservices_authenticationdb.[dbo].[ExpenseStatus]
+
+select * from expensepilotmicroservices_authenticationdb.[dbo].[Department]

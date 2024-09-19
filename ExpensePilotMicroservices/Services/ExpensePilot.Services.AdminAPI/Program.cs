@@ -38,6 +38,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IExpenseCategoryRepository, ExpenseCategoryRepository>();
 builder.Services.AddScoped<IExpenseStatusRepository, ExpenseStatusRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 //Defining Cors policy
 builder.Services.AddCors(options =>

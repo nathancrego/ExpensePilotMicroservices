@@ -7,6 +7,8 @@ export interface User {
   phoneNumber: string,
   managerId?: string,
   managerName: string,
+  departmentId?: number,
+  departmentName: string,
   roleId?: string
   roleName: string
 }

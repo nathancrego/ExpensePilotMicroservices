@@ -6,5 +6,7 @@ export interface EditUser {
   phoneNumber: string,
   managerId: string,
   managerName: string,
+  departmentId?: number | null;
+  departmentName: string;
   roleName: string
 }
