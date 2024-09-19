@@ -41,7 +41,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
             return Ok(loginResponse);
         }
 
-        [HttpPost("ForgotPassword")]
+        [HttpPost("forgotPassword")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPassword)
         {
             var user = await passwordResetRepository.FindByEmailAsync(forgotPassword.Email);
@@ -53,7 +53,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
             return Ok(token);
         }
 
-        [HttpPost("ResetPassword")]
+        [HttpPost("resetPassword")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPassword)
         {
             var user = await passwordResetRepository.FindByEmailAsync(resetPassword.Email);

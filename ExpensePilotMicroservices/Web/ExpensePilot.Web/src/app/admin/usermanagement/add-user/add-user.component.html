@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Add New User</h2>
+<div>
+  <form #addUserForm="ngForm">
+    <mat-dialog-content class="mat-typography">
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input type="text" id="fname" name="fname" [(ngModel)]="user.fname" matInput placeholder="John" required />
+              <mat-hint>Please enter first name</mat-hint>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input type="text" id="lname" name="lname" [(ngModel)]="user.lname" matInput placeholder="Doe" required />
+              <mat-hint>Please enter last name</mat-hint>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" id="email" name="email" [(ngModel)]="user.email" matInput placeholder="john.doe@example.com" required />
+          <mat-hint>Please enter email</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" matInput placeholder="555-555-1234" required />
+          <mat-hint>Please enter phone number</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field>
+              <mat-label>Select Manager</mat-label>
+              <mat-select id="managerId" [(ngModel)]="user.managerId" name="managerId">
+                <mat-option *ngFor="let manager of managers$ | async" [value]="manager.id">{{manager.fname}} {{manager.lname}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <mat-label>Select Role</mat-label>
+              <mat-select id="roleName" [(ngModel)]="user.role.id" name="roleName">
+                <mat-option *ngFor="let role of roles$ | async" [value]="role.id">{{role.roleName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button [mat-dialog-close]="true" (click)="onSubmit(addUserForm)" cdkFocusInitial>Add</button>
+    </mat-dialog-actions>
+  </form>
+</div>

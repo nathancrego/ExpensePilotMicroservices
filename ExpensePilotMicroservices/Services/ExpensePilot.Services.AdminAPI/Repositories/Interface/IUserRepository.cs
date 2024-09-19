@@ -9,5 +9,6 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
         public Task<User?> GetByIdAsync (Guid id);
         public Task<User?> UpdateAsync(User user, string newroleName);
         public Task<User?> DeleteAsync (Guid id);
+        public Task<IList<string>> GetRoleAsync(User user);
     }
 }

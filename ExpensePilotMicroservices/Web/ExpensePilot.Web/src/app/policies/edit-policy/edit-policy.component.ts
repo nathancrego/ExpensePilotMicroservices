@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class EditPolicyComponent implements OnInit, OnDestroy {
 
   id: number | null = null;
-  policy?: Policy
+  policy?: Policy;
 
 
   paramSubscription?: Subscription;

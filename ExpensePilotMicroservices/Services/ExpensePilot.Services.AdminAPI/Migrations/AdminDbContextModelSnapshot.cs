@@ -22,6 +22,46 @@ namespace ExpensePilot.Services.AdminAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ExpensePilot.Services.AdminAPI.Models.Domain.ExpenseCategory", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("ExpenseCategory");
+                });
+
+            modelBuilder.Entity("ExpensePilot.Services.AdminAPI.Models.Domain.ExpenseStatus", b =>
+                {
+                    b.Property<int>("StatusID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusID"));
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StatusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatusID");
+
+                    b.ToTable("ExpenseStatus");
+                });
+
             modelBuilder.Entity("ExpensePilot.Services.AuthenticationAPI.Models.Domain.Role", b =>
                 {
                     b.Property<Guid>("Id")

@@ -1,4 +1,5 @@
-﻿using ExpensePilot.Services.AuthenticationAPI.Models.Domain;
+﻿using ExpensePilot.Services.AdminAPI.Models.Domain;
+using ExpensePilot.Services.AuthenticationAPI.Models.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Data
         public AdminDbContext(DbContextOptions<AdminDbContext> options) : base(options) { }
 
         public DbSet<User> Users {  get; set; }
+        public DbSet<ExpenseCategory> ExpenseCategory { get; set; }
+        public DbSet<ExpenseStatus> ExpenseStatus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

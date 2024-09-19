@@ -8,3 +8,7 @@ select * from expensepilotmicroservices_authenticationdb.[dbo].[AspNetUserTokens
 
 select * from expensepilotmicroservices_authenticationdb.[dbo].[AspNetUserClaims]
 select * from expensepilotmicroservices_authenticationdb.[dbo].[AspNetRoleClaims]
+
+
+select * from expensepilotmicroservices_authenticationdb.[dbo].[ExpenseCategory]
+select * from expensepilotmicroservices_authenticationdb.[dbo].[ExpenseStatus]

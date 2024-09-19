@@ -16,7 +16,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Interface
         {
             this.jwtOptions = jwtOptions.Value;
         }
-        public string GenerateToken(User user)
+        public string GenerateToken(User user, IEnumerable<string> roles)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -30,6 +30,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Interface
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()), //Converts guid to string for claims
                 new Claim(JwtRegisteredClaimNames.Name, user.UserName.ToString())
             };
+
+            claimList.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             //config properties for a token
             var tokenDescriptor = new SecurityTokenDescriptor

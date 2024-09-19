@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Add New Role</h2>
+<form #addRoleForm="ngForm">
+  <mat-dialog-content class="mat-typography">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <input type="text" id="roleName" name="roleName" [(ngModel)]="roles.roleName" matInput placeholder="Add Role" required/>
+      <mat-hint>Please add new role</mat-hint>
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="onSubmit(addRoleForm)" cdkFocusInitial>Add</button>
+  </mat-dialog-actions>
+</form>

@@ -1,4 +1,5 @@
-﻿using ExpensePilot.Services.AuthenticationAPI.Models.Domain;
+﻿using ExpensePilot.Services.AdminAPI.Repositories.Interface;
+using ExpensePilot.Services.AuthenticationAPI.Models.Domain;
 using ExpensePilot.Services.AuthenticationAPI.Models.DTO;
 using ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +12,12 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository userRepository;
+        private readonly IRoleRepository roleRepository;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository, IRoleRepository roleRepository)
         {
             this.userRepository = userRepository;
+            this.roleRepository = roleRepository;
         }
 
         [HttpPost]
@@ -34,8 +37,16 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 PhoneNumber = addUser.PhoneNumber,
                 ManagerId = addUser.ManagerId
             };
-            string roleName = addUser.Role.RoleName;
+            //string roleName = addUser.Role.RoleName;
+            //await userRepository.CreateAsync(add, roleName);
+
+            var role = await roleRepository.GetByIdAsync(addUser.Role.Id);
+            var roleName = role.Name;
             await userRepository.CreateAsync(add, roleName);
+
+            var assignedRoleName = await userRepository.GetRoleAsync(add);
+            //var role = await userRepository.GetRoleAsync(add);
+            //var assignedRoleName = role.FirstOrDefault();
 
             //Convert Domain model to DTO
             var response = new UserDto
@@ -47,7 +58,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 Email = add.Email,
                 PhoneNumber = add.PhoneNumber,
                 ManagerId = add.ManagerId,
-                ManagerName = add.Manager != null ? $"{add.Manager.Fname}{add.Manager.Lname}" : null
+                ManagerName = add.Manager != null ? $"{add.Manager.Fname}{add.Manager.Lname}" : null,
+                RoleName = assignedRoleName.FirstOrDefault()
             };
             return Ok(response);
         }
@@ -59,6 +71,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
             var response = new List<UserDto>();
             foreach (var user in users)
             {
+                var role = await userRepository.GetRoleAsync(user);
                 response.Add(new UserDto
                 {
                     Id = user.Id,
@@ -68,7 +81,9 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber,
                     ManagerId = user.ManagerId,
-                    ManagerName = user.Manager != null ? $"{user.Manager.Fname}{user.Manager.Lname}" : null
+                    ManagerName = user.Manager != null ? $"{user.Manager.Fname}{user.Manager.Lname}" : null,
+                    RoleName = role.FirstOrDefault()
+
                 });
             }
             return Ok(response);
@@ -83,6 +98,7 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
             {
                 return NotFound();
             }
+            var role = await userRepository.GetRoleAsync(existingUser);
             var response = new UserDto
             {
                 Id = existingUser.Id,
@@ -92,7 +108,8 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
                 Email = existingUser.Email,
                 PhoneNumber = existingUser.PhoneNumber,
                 ManagerId = existingUser.ManagerId,
-                ManagerName = existingUser.Manager != null ? $"{existingUser.Manager.Fname}{existingUser.Manager.Lname}" : null
+                ManagerName = existingUser.Manager != null ? $"{existingUser.Manager.Fname}{existingUser.Manager.Lname}" : null,
+                RoleName = role.FirstOrDefault()
             };
             return Ok(response);
         }
@@ -114,14 +131,18 @@ namespace ExpensePilot.Services.AuthenticationAPI.Controllers
             {
                 return NotFound();
             }
+            var role = await userRepository.GetRoleAsync(updatedUser);
             var response = new UserDto
             {
                 Id = edit.Id,
+                UserName = edit.UserName,
                 Fname = edit.Fname,
                 Lname = edit.Lname,
+                Email = edit.Email,
                 PhoneNumber = edit.PhoneNumber,
                 ManagerId = edit.ManagerId,
-                ManagerName = edit.Manager != null ? $"{edit.Manager.Fname}{edit.Manager.Lname}" : null
+                ManagerName = edit.Manager != null ? $"{edit.Manager.Fname}{edit.Manager.Lname}" : null,
+                RoleName = role.FirstOrDefault()
             };
             return Ok(response);
         }

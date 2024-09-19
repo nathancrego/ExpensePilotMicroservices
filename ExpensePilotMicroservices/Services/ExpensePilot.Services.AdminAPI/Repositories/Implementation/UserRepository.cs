@@ -71,6 +71,11 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
             //return null;
         }
 
+        public async Task<IList<string>> GetRoleAsync(User user)
+        {
+            return await userManager.GetRolesAsync(user);
+        }
+
         public async Task<User?> UpdateAsync(User user, string newroleName)
         {
             var existingUser = await dbContext.Users.Include(u=>u.Manager).FirstOrDefaultAsync(u=>u.Id==user.Id);

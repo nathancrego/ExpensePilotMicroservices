@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{425D9192-5AD
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ExpensePilot.Web", "Web\ExpensePilot.Web\ExpensePilot.Web.esproj", "{4DDEC229-2F3D-40A4-9D2C-730E49170B99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpensePilot.GatewaySolution", "Gateway\ExpensePilot.GatewaySolution\ExpensePilot.GatewaySolution.csproj", "{A45650ED-2076-4C6A-84E6-9A38E47E0CE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{4DDEC229-2F3D-40A4-9D2C-730E49170B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DDEC229-2F3D-40A4-9D2C-730E49170B99}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DDEC229-2F3D-40A4-9D2C-730E49170B99}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A45650ED-2076-4C6A-84E6-9A38E47E0CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45650ED-2076-4C6A-84E6-9A38E47E0CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45650ED-2076-4C6A-84E6-9A38E47E0CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45650ED-2076-4C6A-84E6-9A38E47E0CE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{B2FE032E-8223-43DC-B38B-48F722F957E9} = {BACA5B6A-0A1B-406D-AE91-4474FE48B24E}
 		{0F1A1736-3AA1-49F0-A6E6-8359AB83E408} = {BACA5B6A-0A1B-406D-AE91-4474FE48B24E}
 		{4DDEC229-2F3D-40A4-9D2C-730E49170B99} = {425D9192-5ADC-48FE-8CC4-2B4CCE6781DB}
+		{A45650ED-2076-4C6A-84E6-9A38E47E0CE5} = {7001D655-0EDC-4889-A71C-0E4038566012}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9724EE33-00E9-4201-B7A3-BD5906B5DBBA}

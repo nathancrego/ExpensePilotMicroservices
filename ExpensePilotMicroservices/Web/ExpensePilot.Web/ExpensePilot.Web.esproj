@@ -8,11 +8,15 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\ExpensePilot.Web\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\admin\expensecategory\services\" />
+    <Folder Include="src\app\admin\expensestatus\services\" />
+    <Folder Include="src\app\admin\rolemanagement\services\" />
+    <Folder Include="src\app\admin\usermanagement\services\" />
+    <Folder Include="src\app\authentication\services\" />
     <Folder Include="src\app\core\" />
     <Folder Include="src\app\features\" />
-    <Folder Include="src\app\admin\" />
-    <Folder Include="src\app\authentication\" />
     <Folder Include="src\app\expense\" />
+    <Folder Include="src\app\dashboard\" />
     <Folder Include="src\app\payments\" />
     <Folder Include="src\app\policies\services\" />
   </ItemGroup>

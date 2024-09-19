@@ -4,6 +4,6 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Implementation
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(User user);
+        string GenerateToken(User user, IEnumerable<string> roles);
     }
 }

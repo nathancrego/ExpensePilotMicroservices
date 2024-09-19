@@ -31,11 +31,11 @@
             Approvals
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['/admin/cuisines']">Approvals</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/admin/cuisines']">Pending Approvals</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" [routerLink]="['/admin/recipes']">Delegation</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/admin/recipes']">Delegations</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -61,59 +61,58 @@
             <li><a class="dropdown-item" [routerLink]="['policy']">View Policies</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
-             aria-expanded="false">
-            Administration
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['/admin/users']">User Managment</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" [routerLink]="['/admin/roles']">Role Managment</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/admin/useraccess']">User's Access Management</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/admin/departments']">Department Management</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/admin/expensecategory']">
-                Expense Category
-                Management
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item" [routerLink]="['/admin/expensestatus']">Expense Status Mangament</a>
-            </li>
-          </ul>
-        </li>
+        <ng-container *ngIf="user !==undefined && user.role.includes('Administrator')">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">
+              Administration
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" [routerLink]="['/admin/users']">User Managment</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" [routerLink]="['/admin/roles']">Role Managment</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/admin/departments']">Department Management</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/admin/expensecategory']">
+                  Expense Category
+                  Management
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/admin/expensestatus']">Expense Status Mangament</a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
       </ul>
+      <div class="d-flex">
+        <ng-container *ngIf="user === undefined; else showLogout">
+
+          <a [routerLink]="['/register']" class="btn btn-primary btn-sm">Register</a>
+
+          <a [routerLink]="['/login']" class="btn btn-primary btn-sm">Login</a>
+        </ng-container>
+
+        <ng-template #showLogout>
+          <div class="d-flex align-items-center">
+            <span id="user">{{user?.fName}} {{user?.lName}}</span>
+            <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
+          </div>
+        </ng-template>
+      </div>
     </div>
-    <!-- <ng-container *ngIf="user === undefined; else showLogout">
-
-        <a [routerLink]="['/register']" class="btn btn-primary btn-sm">Register</a>
-
-      <a [routerLink]="['/login']" class="btn btn-primary btn-sm">Login</a>
-    </ng-container> -->
-    <!-- <ng-template #showLogout>
-        <div class="d-flex align-items-center">
-          <span id="user">{{user?.logon}}</span>
-          <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
-        </div>
-      </ng-template> -->
   </div>
 </nav>

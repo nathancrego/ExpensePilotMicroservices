@@ -71,14 +71,16 @@ namespace ExpensePilot.Services.AuthenticationAPI.Repositories.Interface
                 };
             }
             //if User found - Generate Token
-            var token = jwtTokenGenerator.GenerateToken(user);
+            var roles = await userManager.GetRolesAsync(user);
+            var token = jwtTokenGenerator.GenerateToken(user,roles);
             AuthUserDto userDto = new()
             {
                 ID = user.Id,
                 Fname = user.Fname,
                 Lname = user.Lname,
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                Roles = roles.ToList() //Add roles to response
             };
             LoginResponseDto loginResponseDto = new LoginResponseDto()
             {
