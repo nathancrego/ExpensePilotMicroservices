@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 import { User } from '../models/user.model';
 import { Roles } from '../../rolemanagement/models/roles.model';
 import { RolesService } from '../../rolemanagement/services/roles.service';
+import { Department } from '../../departmentmanagement/models/department.model';
+import { DepartmentService } from '../../departmentmanagement/services/department.service';
 
 
 @Component({
@@ -19,16 +21,18 @@ export class AddUserComponent implements OnDestroy {
 
   user: AddUser;
   managers$?: Observable<User[]> | undefined;
+  departments$?: Observable<Department[]> | undefined;
   roles$?: Observable<Roles[]> | undefined;
   private addUserSubscription?: Subscription;
 
-  constructor(private userService: UserService, private rolesService:RolesService, private router: Router) {
+  constructor(private userService: UserService, private rolesService:RolesService, private departmentService:DepartmentService, private router: Router) {
     this.user = {
       fname: '',
       lname: '',
       email: '',
       phoneNumber: '',
-      managerId: null,
+      managerId: '',
+      departmentId: null,
       role: {
         id: '',
         roleName: ''
@@ -49,9 +53,16 @@ export class AddUserComponent implements OnDestroy {
         return ([]);
       })
     );
-  }
 
-  
+    // Initialize observables in constructor
+    this.departments$ = this.departmentService.getAllDepartments().pipe(
+      catchError(error => {
+        console.error('Error loading department:', error);
+        return ([]);
+      })
+    );
+
+  }
 
   onSubmit(addUserForm: NgForm): void {
     if (addUserForm.valid) {

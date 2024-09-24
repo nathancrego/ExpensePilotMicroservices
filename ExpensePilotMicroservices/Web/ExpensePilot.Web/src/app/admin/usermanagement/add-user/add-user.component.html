@@ -27,14 +27,25 @@
           <mat-hint>Please enter email</mat-hint>
         </mat-form-field>
       </p>
-      <p>
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Phone Number</mat-label>
-          <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" matInput placeholder="555-555-1234" required />
-          <mat-hint>Please enter phone number</mat-hint>
-        </mat-form-field>
-      </p>
-
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" matInput placeholder="555-555-1234" required />
+              <mat-hint>Please enter phone number</mat-hint>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <mat-label>Select Department</mat-label>
+              <mat-select id="departmentId" [(ngModel)]="user.departmentId" name="departmentId">
+                <mat-option *ngFor="let department of departments$ | async" [value]="department.dptID">{{department.departmentName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
       <table class="full-width" cellspacing="0">
         <tr>
           <td>

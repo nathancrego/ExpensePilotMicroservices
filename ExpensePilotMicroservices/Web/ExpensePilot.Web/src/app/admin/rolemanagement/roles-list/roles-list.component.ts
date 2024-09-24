@@ -33,9 +33,10 @@ export class RolesListComponent implements OnInit, AfterViewInit, OnDestroy {
   //Adding Role by opening the Dialog box
   openAddDialog() {
     const adddialogRef = this.dialog.open(AddRolesComponent);
-
-    adddialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    adddialogRef.afterClosed().subscribe({
+      next: (response) => {
+        this.ngOnInit(); //refresh the table once the record is deleted
+      }
     });
   }
 

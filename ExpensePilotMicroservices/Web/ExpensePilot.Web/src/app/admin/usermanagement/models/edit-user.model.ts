@@ -4,9 +4,10 @@ export interface EditUser {
   lname: string,
   email: string,
   phoneNumber: string,
-  managerId: string,
+  managerId?: string,
   managerName: string,
   departmentId?: number | null;
   departmentName: string;
+  roleId?: string
   roleName: string
 }

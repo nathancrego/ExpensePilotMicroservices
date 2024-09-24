@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { UserService } from '../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +17,7 @@ import { AddUserComponent } from '../add-user/add-user.component';
 export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   dataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
-  displayedColumns: string[] = ["id","userName", "fname", "lname", "managerName", "email","departmentName", "roleName", "action"];
+  displayedColumns: string[] = ["id","userName", "fname", "lname", "managerName", "email", "departmentName", "roleName", "action"];
 
   id: string | null = null;
   deleteUserSubscription?: Subscription;
@@ -30,9 +31,10 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
   //Adding User by opening the Dialog box
   openAddDialog() {
     const adddialogRef = this.dialog.open(AddUserComponent);
-
-    adddialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    adddialogRef.afterClosed().subscribe({
+      next: (response) => {
+        this.ngOnInit(); //refresh the table once the record is deleted
+      }
     });
   }
 

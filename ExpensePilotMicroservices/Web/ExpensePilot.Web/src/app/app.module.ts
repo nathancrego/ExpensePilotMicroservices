@@ -44,6 +44,7 @@ import { ExpensestatusListComponent } from './admin/expensestatus/expensestatus-
 import { AddDepartmentComponent } from './admin/departmentmanagement/add-department/add-department.component';
 import { EditDepartmentComponent } from './admin/departmentmanagement/edit-department/edit-department.component';
 import { DepartmentListComponent } from './admin/departmentmanagement/department-list/department-list.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +91,7 @@ import { DepartmentListComponent } from './admin/departmentmanagement/department
     MatPaginatorModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule
     
   ],
   providers: [
