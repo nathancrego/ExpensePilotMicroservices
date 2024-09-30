@@ -14,3 +14,7 @@ select * from expensepilotmicroservices_authenticationdb.[dbo].[ExpenseCategory]
 select * from expensepilotmicroservices_authenticationdb.[dbo].[ExpenseStatus]
 
 select * from expensepilotmicroservices_authenticationdb.[dbo].[Department]
+
+
+select * from expensepilotmicroservices_ExpenseDB.[dbo].[Expenses]
+select * from expensepilotmicroservices_ExpenseDB.[dbo].[InvoiceReceipts]
